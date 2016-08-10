@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>testApp</title>
+
+
+</head>
+<body>
+	<button type="button" onclick="send();">Send</button>
+</body>
+</html>
+
+<!-- Import Stuff -->
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+
+<!-- JavaScript -->
+<script type="text/javascript" charset="utf-8">
+	var socket = io.connect('http://' + document.domain + ':' + location.port);
+	socket.on('back2front', function(data){
+	    console.log('(3) received data from back to front '+data)
+	});
+
+	function send(){
+	    socket.emit('front2back',8128)
+	    console.log('(1) sending data from front to back')
+	};
+</script>
